@@ -23,7 +23,7 @@ public class Department {
     private String depName;
 
     @ManyToOne
-    @JoinColumn(name = "fcName")
+    @JoinColumn(name = "faculty")
     private Faculty faculty;
     
     @OneToMany(mappedBy = "department")

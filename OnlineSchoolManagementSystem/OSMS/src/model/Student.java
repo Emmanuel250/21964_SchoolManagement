@@ -11,8 +11,10 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -27,21 +29,25 @@ public class Student {
     private String name;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    private LocalDate dateOfBirth;
+    private LocalDate dateOfBirth; 
     private String phoneNumber;
     private String email;
     
     @ManyToOne
-    @JoinColumn(name = "depName")
+    @JoinColumn(name = "department")
     private Department department;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "Registration",
+            joinColumns = {@JoinColumn(name = "studentId")},
+            inverseJoinColumns = {@JoinColumn(name = "code")}
+    )
     private List<Course> courses;
     
     public Student() {
     }
 
-    public Student(String studentId, String name, Gender gender, LocalDate dateOfBirth, String phoneNumber, String email, Department department) {
+    public Student(String studentId, String name, Gender gender, LocalDate dateOfBirth,String phoneNumber, String email, Department department) {
         this.studentId = studentId;
         this.name = name;
         this.gender = gender;
@@ -74,7 +80,7 @@ public class Student {
     public void setGender(Gender gender) {
         this.gender = gender;
     }
-
+    
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
@@ -114,5 +120,4 @@ public class Student {
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
-    
 }

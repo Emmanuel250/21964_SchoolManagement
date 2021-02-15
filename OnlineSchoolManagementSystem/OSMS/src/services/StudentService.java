@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package dao;
+package services;
 
 import java.util.List;
 import model.Student;
@@ -13,9 +13,9 @@ import model.Student;
  *
  * @author emmanuel
  */
-public interface StudentDao {
-    public Student findByStudentId(String stId);
-    public Student registerStudent(Student s);
-    public Student updateStudent(Student s);
-    public Student deleteStudent(String id);
+public interface StudentService {
+    public String registerStudent(Student s);
+    public String deleteStudent(String id);
+    public String UpdateStudent(Student s);
+    public List<Student> listAllStudent();
 }

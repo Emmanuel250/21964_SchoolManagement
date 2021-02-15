@@ -29,7 +29,7 @@ public class GeneralDataInialiation {
     
     public static Operation INSERT_DEPARTMENTs = 
             Operations.insertInto("Department")
-            .columns("depName","fcName" )
+            .columns("depName","faculty" )
             .values("SOFTWARE", "IT")
             .values("NEWTWORKING", "IT")
             .values("POLITICS", "EDUCATION")
@@ -40,7 +40,7 @@ public class GeneralDataInialiation {
     
     public static Operation INSERT_COURSEs = 
             Operations.insertInto("Course")
-            .columns("code", "name", "credit", "depName")
+            .columns("code", "name", "credit", "department")
             .values("INSY 314", "JAVA", 4, "SOFTWARE")
             .values("INSY 315", "PL/SQL", 4, "SOFTWARE")
             .values("INSY 316", "TCP/IP", 3, "NEWTWORKING")
@@ -52,17 +52,19 @@ public class GeneralDataInialiation {
     
     public static Operation INSERT_STUDENTs = 
             Operations.insertInto("Student")
-            .columns("studentId", "name", "gender", "dateOfBirth","phoneNumber", "email","depName")
-            .values("1001", "Emmanuel", "MALE", LocalDate.now(), "0788596281", "primary@gmail.com", "NEWTWORKING")
-            .values("1002", "NTIVUGURUZWA", "MALE", LocalDate.now(), "0788596281", "ntivugu@gmail.com", "SOFTWARE")
-            .values("1003", "KEILA Audrey", "FEMALE", LocalDate.now(), "07883230874", "keillaodrey@gmail.com", "LEADERSHIP")
+            .columns("studentId", "name", "gender", "dateOfBirth", "phoneNumber", "email","department")
+            .values("1001", "Emmanuel", "MALE", LocalDate.now(),"0788596281", "primary@gmail.com", "NEWTWORKING")
+            .values("1002", "NTIVUGURUZWA", "MALE", LocalDate.now(),"0788596281", "ntivugu@gmail.com", "SOFTWARE")
+            .values("1003", "KEILA Audrey", "FEMALE", LocalDate.now(),"07883230874", "keillaodrey@gmail.com", "LEADERSHIP")
             .build();
             
     public static Operation INSERT_STUDENT_COURSE = 
-            Operations.insertInto("Student_Course")
-            .columns("students_studentId", "courses_code")
+            Operations.insertInto("Registration")
+            .columns("studentId", "code")
             .values("1002", "INSY 317")
             .build();
+    
+    
     //       DELETE
     
     public static Operation DELETE_ALL_FACULTY = 
@@ -74,5 +76,5 @@ public class GeneralDataInialiation {
     public  static  Operation DELETE_ALL_STUDENTs = 
             Operations.deleteAllFrom("Student");
     public static Operation DELETE_ALL_STUDENT_COURSE = 
-            Operations.deleteAllFrom("Student_Course");
+            Operations.deleteAllFrom("Registration");
 }

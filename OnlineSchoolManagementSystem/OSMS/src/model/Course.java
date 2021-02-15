@@ -7,7 +7,6 @@
 package model;
 
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -26,7 +25,7 @@ public class Course {
     private int credit;
 
     @ManyToOne
-    @JoinColumn(name = "depName")
+    @JoinColumn(name = "department")
     private Department department;
     
     @ManyToMany(mappedBy = "courses")
